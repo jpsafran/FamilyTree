@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Modern Family Tree (Manual Layout)</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- D3 Library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Modern Family Tree</h1>
+  </header>
+
+  <div class="toolbar">
+    <button id="add-member-btn">Add Member</button>
+    <button id="analytics-btn">Analytics</button>
+    <input type="file" id="import-json" />
+    <button id="export-btn">Export</button>
+  </div>
+
+  <!-- Main container -->
+  <div id="tree-container" class="draggable">
+    <svg id="tree-svg" width="1200" height="800"></svg>
+  </div>
+
+  <!-- Info Modal -->
+  <div id="info-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="info-close" class="close">✕</button>
+      <h2 id="info-name"></h2>
+      <p id="info-birth"></p>
+      <p id="info-death"></p>
+      <p id="info-age"></p>
+      <p id="info-details"></p>
+      <img id="info-image" src="" alt="profile" />
+      <br>
+      <button id="edit-btn">Edit</button>
+      <button id="delete-btn">Delete</button>
+    </div>
+  </div>
+
+  <!-- Add/Edit Member Modal -->
+  <div id="member-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="member-close" class="close">✕</button>
+      <h2 id="member-modal-title">Add Member</h2>
+
+      <label>Name</label>
+      <input type="text" id="member-name" />
+
+      <label>Birth (YYYY-MM-DD)</label>
+      <input type="date" id="member-birth" />
+
+      <label>Death (YYYY-MM-DD) (optional)</label>
+      <input type="date" id="member-death" />
+
+      <label>Details</label>
+      <textarea id="member-details"></textarea>
+
+      <label>Photo URL (optional)</label>
+      <input type="text" id="member-image" />
+
+      <button id="member-save-btn">Save</button>
+    </div>
+  </div>
+
+  <!-- Relationship Modal -->
+  <div id="rel-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="rel-close" class="close">✕</button>
+      <h2>Confirm Relationship</h2>
+      <p id="rel-selected"></p>
+      <label>Type</label>
+      <select id="rel-type">
+        <option value="parent">Parent</option>
+        <option value="spouse">Spouse</option>
+        <option value="sibling">Sibling</option>
+      </select>
+      <button id="rel-save-btn">Confirm</button>
+    </div>
+  </div>
+
+  <!-- Analytics Modal -->
+  <div id="analytics-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="analytics-close" class="close">✕</button>
+      <h2>Analytics</h2>
+      <div id="analytics-content"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="utils.js"></script>
+  <script src="drag.js"></script>
+  <script src="relationships.js"></script>
+  <script src="d3-layout.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
