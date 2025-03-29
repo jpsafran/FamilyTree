@@ -124,3 +124,42 @@ function groupBirthsByDecade() {
             return acc;
         }, {});
 }
+
+function calculateSiblingStats() {
+  const siblingGroups = new Map();
+  
+  relationships
+    .filter(r => r.type === 'parent')
+    .forEach(r => {
+      const siblings = relationships
+        .filter(r2 => r2.type === 'parent' && r2.from === r.from)
+        .map(r2 => r2.to);
+      
+      siblings.forEach(s => siblingGroups.set(s, siblings.length));
+    });
+  
+  const sizes = Array.from(siblingGroups.values());
+  return {
+    averageSiblings: sizes.length ? 
+      (sizes.reduce((a, b) => a + b, 0) / sizes.length).toFixed(1) : 0,
+    maxSiblings: sizes.length ? Math.max(...sizes) : 0
+  };
+}
+
+function getAnalytics() {
+  return {
+    totalMembers: familyMembers.length || 0,
+    livingMembers: familyMembers.filter(m => !m.death).length || 0,
+    averageAge: calculateAverageAge() || 0,
+    generations: calculateGenerations() || 0,
+    relationshipTypes: countRelationshipTypes() || {},
+    birthsByDecade: groupBirthsByDecade() || {},
+    genderDistribution: calculateGenderDistribution() || {},
+    oldestMember: findOldestMember() || { name: 'N/A' },
+    youngestMember: findYoungestMember() || { name: 'N/A' },
+    commonBirthPlaces: findCommonBirthPlaces() || {},
+    averageLifespan: calculateAverageLifespan() || 0,
+    familyLongevity: calculateFamilyLongevity() || 0,
+    monthlyBirths: calculateMonthlyBirths() || {}
+  };
+}

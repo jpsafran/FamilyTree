@@ -380,6 +380,16 @@ function setupUI() {
   timelineBtn.onclick = toggleTimeline;
   document.querySelector(".toolbar").appendChild(timelineBtn);
 
+  // Add Reset button handler
+  document.getElementById("reset-btn").onclick = () => {
+    if (confirm("Are you sure you want to reset the family tree? This will remove all members and cannot be undone.")) {
+      familyMembers = [];
+      relationships = [];
+      saveData();
+      render();
+    }
+  };
+
   // Close modals
   document.getElementById("info-close").onclick = () => closeModal("info-modal");
   document.getElementById("edit-close").onclick = () => closeModal("edit-modal");

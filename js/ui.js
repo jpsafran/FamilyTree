@@ -429,12 +429,6 @@ function showAnalyticsModal() {
             </div>
             
             <div class="stat-box">
-                <h3>Family Structure</h3>
-                <p>Average Siblings: ${analytics.siblingStats.averageSiblings}</p>
-                <p>Largest Sibling Group: ${analytics.siblingStats.maxSiblings}</p>
-            </div>
-            
-            <div class="stat-box">
                 <h3>Notable Members</h3>
                 <p>Oldest: ${analytics.oldestMember ? analytics.oldestMember.name : 'N/A'}</p>
                 <p>Youngest: ${analytics.youngestMember ? analytics.youngestMember.name : 'N/A'}</p>
