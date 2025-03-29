@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Family Tree App</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- Link to our CSS -->
+  <link rel="stylesheet" href="css/styles.css" /> <!-- Ensure this matches your file name exactly -->
+  <!-- D3 library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <!-- PDF Export libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <!-- Move pdfExport.js after the libraries but before other app scripts -->
+  <script src="js/pdfExport.js" defer></script>
+  <!-- Our JS files -->
+  <script src="js/data.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+        <svg class="tree-logo" viewBox="0 0 100 100" width="40" height="40">
+            <path d="M50 10 
+                     C60 30, 80 35, 85 55
+                     C87 65, 82 75, 75 80
+                     C65 87, 55 85, 50 82
+                     C45 85, 35 87, 25 80
+                     C18 75, 13 65, 15 55
+                     C20 35, 40 30, 50 10" 
+                  fill="#2ecc71"/>
+            <path d="M47 80 L53 80 L53 90 L47 90 Z" 
+                  fill="#8b4513"/>
+        </svg>
+        <h1>Uncle Jordan's Family Tree</h1>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <a href="../../index.html" class="toolbar-btn">← Return Home</a>
+    <button id="add-member-btn" aria-label="Add Member">Add Member</button>
+    <button id="export-btn" aria-label="Export JSON">Export JSON</button>
+    <input type="file" id="import-file" aria-label="Import JSON File" />
+    <input type="text" id="search-input" placeholder="Search..." aria-label="Search Family Members" />
+    <button id="export-pdf-btn" onclick="window.exportFamilyTreePDF()">Export to PDF</button>
+    <button id="reset-btn" aria-label="Reset Tree">Reset Tree</button>
+  </div>
+
+  <!-- The main container for the SVG family tree -->
+  <div id="tree-container">
+    <svg id="tree-svg" role="img" aria-label="Family Tree Visualization"></svg>
+  </div>
+
+  <!-- Info Modal -->
+  <div id="info-modal" class="modal">
+    <div class="modal-content fancy-box">
+      <span class="close" id="info-close">&times;</span>
+      <h2 id="info-name"></h2>
+      <p id="info-birth"></p>
+      <p id="info-death"></p>
+      <p id="info-age"></p>
+      <p id="info-details"></p>
+      <img id="info-image" src="" alt="Profile" />
+      <br />
+      <button id="info-edit-btn">Edit</button>
+      <button id="info-delete-btn">Delete</button>
+    </div>
+  </div>
+
+  <!-- Edit Modal (Add or Edit) -->
+  <div id="edit-modal" class="modal">
+    <div class="modal-content fancy-box">
+      <span class="close" id="edit-close">&times;</span>
+      <h2 id="edit-modal-title">Add Member</h2>
+      <form id="edit-form">
+        <!-- Form fields will be populated by JavaScript -->
+      </form>
+      <button id="edit-save-btn">Save</button>
+    </div>
+  </div>
+
+  <!-- Relationship Modal -->
+  <div id="rel-modal" class="modal">
+    <div class="modal-content fancy-box">
+      <span class="close" id="rel-close">&times;</span>
+      <h2>Add Relationship</h2>
+      <p id="rel-chosen"></p>
+      <label for="rel-target">Choose another member:</label>
+      <select id="rel-target"></select>
+      <label for="rel-type">Relationship type:</label>
+      <select id="rel-type">
+        <option value="parent">Parent</option>
+        <option value="spouse">Spouse</option>
+        <option value="sibling">Sibling</option>
+      </select>
+      <button id="rel-save-btn">Confirm</button>
+    </div>
+  </div>
+
+  <!-- Manage Relationships Modal -->
+  <div id="manage-rel-modal" class="modal">
+    <div class="modal-content fancy-box">
+      <span class="close" id="manage-rel-close">&times;</span>
+      <h2 id="manage-rel-title">Manage Relationships</h2>
+      <ul id="manage-rel-list"></ul>
+    </div>
+  </div>
+
+  <!-- Context Menu (right-click) -->
+  <div id="context-menu" class="context-menu fancy-box">
+    <ul>
+      <li id="ctx-view-info">View Info</li>
+      <li id="ctx-edit-member">Edit Info</li>
+      <li id="ctx-add-relationship">Add Relationship</li>
+      <li id="ctx-manage-relationships">Manage Relationships</li>
+      <li id="ctx-delete-member">Delete Member</li>
+    </ul>
+  </div>
+
+  <!-- Analytics Modal -->
+  <div id="analytics-modal" class="modal">
+    <div class="modal-content fancy-box">
+      <!-- Content will be dynamically populated -->
+    </div>
+  </div>
+
+  <div class="timeline-panel">
+    <div class="timeline-content"></div>
+  </div>
+
+  <!-- Photo Modal for enlarged images -->
+  <div id="photo-modal" class="photo-modal">
+    <span class="close">&times;</span>
+    <img src="" alt="Enlarged photo">
+  </div>
+</body>
+</html>
