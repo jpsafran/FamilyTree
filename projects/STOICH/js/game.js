@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="vertical-line vertical-line-1"></div>
                 <div class="vertical-line vertical-line-2"></div>
                 <div class="word-cell start-word" style="grid-column: 1; grid-row: 1;">${dailyPuzzle.startWord}</div>
-                <div class="word-cell" data-index="0" style="grid-column: 1; grid-row: 2">?</div>
+                <div class="word-cell highlight-next" data-index="0" style="grid-column: 1; grid-row: 2">?</div>
                 <div class="word-cell" data-index="1" style="grid-column: 2; grid-row: 1">?</div>
                 <div class="word-cell" data-index="2" style="grid-column: 2; grid-row: 2">?</div>
                 <div class="word-cell" data-index="3" style="grid-column: 3; grid-row: 1">?</div>
@@ -67,6 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const cells = document.querySelectorAll('.word-cell:not(.start-word):not(.end-word)');
         cells.forEach((cell, index) => {
             cell.textContent = selectedWords[index] || '?';
+            cell.classList.remove('highlight-next');
+            
+            // Modified highlight logic to include first cell
+            if ((!selectedWords[index] && index === selectedWords.findIndex(word => !word)) || 
+                (selectedWords.every(word => !word) && index === 0)) {
+                cell.classList.add('highlight-next');
+            }
+            
             // Add click handler to cells
             cell.onclick = () => {
                 if (selectedWords[index]) {
