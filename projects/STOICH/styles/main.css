@@ -175,12 +175,16 @@ button:hover {
     }
 
     .check-button {
-        margin-top: 0.5rem;
+        margin-top: auto;  /* Push to bottom */
         padding: 8px 20px;
         font-size: 1rem;
+        margin-bottom: 1rem;
     }
     
     .app {
         padding: 10px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
 }

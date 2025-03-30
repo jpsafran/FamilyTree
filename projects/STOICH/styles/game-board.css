@@ -114,9 +114,9 @@
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
     .game-board {
-        transform: scale(1);
+        transform: scale(0.9);
         transform-origin: top center;
-        margin: 0.5rem auto;
+        margin: 0.5rem auto 2rem;  /* Added bottom margin */
         flex-direction: row;
         gap: 1.5rem;
         width: 100%;
