@@ -116,9 +116,9 @@
     .game-board {
         transform: scale(0.9);
         transform-origin: top center;
-        margin: 4rem auto 0.25rem; /* Increased top margin, reduced bottom margin */
+        margin: 4rem auto 0.125rem; /* Reduced bottom margin by half */
         flex-direction: row;
-        gap: 1rem; /* Reduced gap */
+        gap: 0.5rem; /* Reduced gap by half from 1rem */
         width: 100%;
         justify-content: center;
     }
