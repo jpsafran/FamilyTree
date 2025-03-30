@@ -48,7 +48,7 @@
 
 .word-cell.correct {
   animation: correctAnimation 0.5s ease-out forwards;
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
   color: white;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .word-cell.wrong {
-  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%) !important;
   color: white;
   transition: background 0.3s ease-out;
 }
@@ -116,7 +116,7 @@
     .game-board {
         transform: scale(0.9);
         transform-origin: top center;
-        margin: 2rem auto 1rem;  /* Adjusted margins for mobile */
+        margin: 2rem auto 0.75rem;  /* Added top margin, reduced bottom margin */
         flex-direction: row;
         gap: 1.5rem;
         width: 100%;

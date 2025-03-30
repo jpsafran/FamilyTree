@@ -167,7 +167,7 @@ button:hover {
 
     .header {
         padding: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;  /* Reduced margin */
     }
 
     .logo-text {
@@ -175,7 +175,7 @@ button:hover {
     }
 
     .check-button {
-        margin-top: 1rem;  /* Reduced for mobile */
+        margin-top: 0.75rem;  /* Reduced margin */
         padding: 8px 20px;
         font-size: 1rem;
         margin-bottom: 1rem;

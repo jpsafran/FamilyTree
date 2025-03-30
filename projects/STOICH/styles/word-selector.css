@@ -103,6 +103,25 @@
         flex-direction: column;
         justify-content: center;
     }
+
+    .word-selector {
+        margin: 0.75rem 0;  /* Reduced margins */
+        padding-top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .word-options {
+        gap: 6px;
+        padding: 8px;
+    }
+    
+    .word-option {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+        min-width: 65px;
+    }
 }
 
 @media (max-width: 480px) {

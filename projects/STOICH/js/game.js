@@ -28,15 +28,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateWordSelection(button, word) {
         const existingIndex = selectedWords.indexOf(word);
         if (existingIndex !== -1) {
-            // Remove word
+            // Remove word and reset cell to white
             selectedWords[existingIndex] = '';
             button.classList.remove('selected');
+            const cell = document.querySelector(`[data-index="${existingIndex}"]`);
+            cell.style.background = 'white';  // Reset to white when removing word
+            cell.classList.remove('word-filled');
         } else {
             // Fill from left to right, starting at index 0
             const nextEmptyIndex = selectedWords.findIndex(w => !w);
-            if (nextEmptyIndex !== -1 && nextEmptyIndex < 5) {  // Make sure we don't exceed array bounds
+            if (nextEmptyIndex !== -1 && nextEmptyIndex < 5) {
                 selectedWords[nextEmptyIndex] = word;
                 button.classList.add('selected');
+                const cell = document.querySelector(`[data-index="${nextEmptyIndex}"]`);
+                cell.style.background = '#fff5b8';  // Yellow background for guesses
             }
         }
         updateGameBoard();
@@ -69,7 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
             cell.textContent = selectedWords[index] || '?';
             cell.classList.remove('highlight-next');
             
-            // Modified highlight logic to include first cell
+            // Reset background if no word
+            if (!selectedWords[index]) {
+                cell.style.removeProperty('background');
+            }
+            
+            // Handle highlighting of next empty cell
             if ((!selectedWords[index] && index === selectedWords.findIndex(word => !word)) || 
                 (selectedWords.every(word => !word) && index === 0)) {
                 cell.classList.add('highlight-next');
@@ -78,10 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add click handler to cells
             cell.onclick = () => {
                 if (selectedWords[index]) {
-                    // Find and deselect the corresponding word button
                     const button = document.querySelector(`.word-option[data-word="${selectedWords[index]}"]`);
                     if (button) button.classList.remove('selected');
                     selectedWords[index] = '';
+                    cell.style.removeProperty('background');
                     updateGameBoard();
                 }
             };
@@ -156,20 +166,22 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedWords.forEach((_, index) => {
                 setTimeout(() => {
                     const element = document.querySelector(`[data-index="${index}"]`);
-                    if (element) element.classList.add('correct');
+                    if (element) {
+                        element.style.removeProperty('background');
+                        element.classList.add('correct');
+                    }
                 }, index * 200);
             });
         } else {
             title.textContent = 'Better luck next time!';
             message.textContent = 'Here is the correct sequence:';
 
-            // Reveal correct answers with flip animation
             dailyPuzzle.solution.forEach((word, index) => {
                 setTimeout(() => {
                     const element = document.querySelector(`[data-index="${index}"]`);
                     if (element) {
+                        element.style.removeProperty('background');
                         element.classList.add('flip');
-                        // Wait for flip animation midpoint to change text
                         setTimeout(() => {
                             element.style.transform = 'perspective(400px) rotateY(0deg)';
                             element.textContent = word;
@@ -190,7 +202,11 @@ document.addEventListener('DOMContentLoaded', () => {
         guessCount = 0;
         gameStatus = 'playing';
         document.querySelectorAll('.word-option').forEach(btn => btn.classList.remove('selected'));
-        document.querySelectorAll('.word-cell').forEach(cell => cell.classList.remove('correct'));
+        document.querySelectorAll('.word-cell:not(.start-word):not(.end-word)').forEach(cell => {
+            cell.classList.remove('correct', 'wrong', 'flip');
+            cell.style.removeProperty('background');
+            cell.style.removeProperty('transform');
+        });
         document.getElementById('gameOver').style.display = 'none';
         document.getElementById('checkButton').style.display = 'block';
         document.getElementById('wordSelector').style.display = 'block';
