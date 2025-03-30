@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 20px;  /* reduced from 40px */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.header {
+  text-align: center;
+  padding: 1.5rem;  /* reduced from 2.5rem */
+  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+  margin-bottom: 2rem;  /* reduced from 3rem */
+  border-radius: 0 0 25px 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  position: relative;
+}
+
+.logo-grid {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-grid::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: 
+    linear-gradient(90deg, transparent 95%, rgba(255,255,255,0.2) 100%),
+    linear-gradient(0deg, transparent 95%, rgba(255,255,255,0.2) 100%);
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+
+h1 {
+  margin: 0;
+  color: white;
+  font-size: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.logo-text {
+  font-family: 'Arial Black', sans-serif;
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+  font-size: 4rem;
+  letter-spacing: 4px;
+  margin: 10px 0;
+}
+
+button {
+  padding: 12px 24px;
+  margin: 12px;
+  font-size: 1.1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.check-button {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  font-size: 1.2rem;
+  padding: 12px 30px;
+  margin-top: 2rem;
+  transition: transform 0.2s;
+}
+
+.check-button:hover {
+  transform: scale(1.05);
+}
+
+.game-over {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="STOICH - A word connection game" />
+    <title>STOICH</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/game-board.css">
+    <link rel="stylesheet" href="styles/word-selector.css">
+    <link rel="stylesheet" href="styles/alert.css">
+</head>
+<body>
+    <div class="app">
+        <div class="header">
+            <button class="info-button" id="infoButton">?</button>
+            <h1>
+                <div class="logo-grid">
+                    <span class="logo-text">STOICH</span>
+                </div>
+            </h1>
+        </div>
+
+        <div id="infoModal" class="info-modal" style="display: none;">
+            <div class="info-content">
+                <h2>How to Play STOICH</h2>
+                <ul>
+                    <li>Start with the leftmost top word, your goal is to pick a word below that relates to this word until you reach the final word</li>
+                    <li>Fill in the grid from left to right</li>
+                    <li>Top words in a new column describe the relationship between words in the last column's rows</li>
+                    <li>You have 5 attempts to find the correct sequence</li>
+                </ul>
+                <button id="closeInfoButton">Got it!</button>
+            </div>
+        </div>
+
+        <div id="alertOverlay" class="alert-overlay" style="display: none;">
+            <div class="alert-content">
+                <p id="alertMessage"></p>
+                <button id="alertCloseButton">OK</button>
+            </div>
+        </div>
+
+        <div id="gameBoard" class="game-board"></div>
+        <div id="wordSelector" class="word-selector"></div>
+        <button id="checkButton" class="check-button">Check Answer</button>
+
+        <div id="gameOver" class="game-over" style="display: none;">
+            <h2 id="gameOverTitle"></h2>
+            <p id="gameOverMessage"></p>
+            <button id="playAgainButton">Play Again</button>
+        </div>
+    </div>
+
+    <script src="js/puzzles.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
