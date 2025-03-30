@@ -73,6 +73,22 @@
         padding: 8px 12px;
         min-width: 60px;
     }
+
+    .word-selector {
+        margin: 0;
+        padding-top: 0.5rem;
+    }
+    
+    .word-options {
+        gap: 6px;
+        padding: 8px;
+    }
+    
+    .word-option {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+        min-width: 65px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -97,6 +113,15 @@
     .word-options {
         gap: 5px;
         padding: 8px;
+    }
+
+    .word-selector {
+        margin: -1rem 0 0;
+    }
+    
+    .word-options {
+        gap: 5px;
+        padding: 6px;
     }
 }
 
