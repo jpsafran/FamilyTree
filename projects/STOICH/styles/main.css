@@ -90,7 +90,7 @@ button:hover {
   background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
   font-size: 1.2rem;
   padding: 12px 30px;
-  margin-top: 2rem;
+  margin-top: 1.5rem;  /* Reduced from 2rem */
   transition: transform 0.2s;
 }
 
@@ -175,7 +175,7 @@ button:hover {
     }
 
     .check-button {
-        margin-top: auto;  /* Push to bottom */
+        margin-top: 1rem;  /* Reduced for mobile */
         padding: 8px 20px;
         font-size: 1rem;
         margin-bottom: 1rem;

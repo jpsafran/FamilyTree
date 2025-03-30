@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2rem auto;
+  margin: 3rem auto 1.5rem;  /* Increased top margin, reduced bottom */
   position: relative;
   max-width: 800px;
   gap: 3rem;
@@ -116,7 +116,7 @@
     .game-board {
         transform: scale(0.9);
         transform-origin: top center;
-        margin: 0.5rem auto 2rem;  /* Added bottom margin */
+        margin: 2rem auto 1rem;  /* Adjusted margins for mobile */
         flex-direction: row;
         gap: 1.5rem;
         width: 100%;
