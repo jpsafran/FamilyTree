@@ -116,7 +116,7 @@
     .game-board {
         transform: scale(0.9);
         transform-origin: top center;
-        margin: 1rem auto 0.5rem;  /* Reduced margins */
+        margin: 4rem auto -1rem; /* Reduced bottom margin to pull up word selector */
         flex-direction: row;
         gap: 1rem; /* Reduced gap */
         width: 100%;
@@ -124,8 +124,8 @@
     }
 
     .word-grid {
-        gap: 10px 15px; /* Reduced gaps */
-        padding: 8px;
+        gap: 12px 20px;
+        padding: 10px;
     }
 
     .word-cell {
@@ -142,14 +142,14 @@
 
 @media (max-width: 480px) {
     .game-board {
-        transform: scale(0.85); /* Slightly more scaled down */
-        margin: 0.5rem auto 0.5rem; /* Reduced margins */
+        transform: scale(0.9);
+        margin: 3.5rem auto -2rem; /* Further reduced bottom margin for smaller screens */
     }
 
     .word-cell {
-        width: 70px; /* Slightly smaller */
-        height: 50px; /* Slightly smaller */
-        font-size: 0.95rem;
+        width: 75px;
+        height: 55px;
+        font-size: 1rem;
     }
 }
 
