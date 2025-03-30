@@ -33,6 +33,38 @@
   box-shadow: none;
 }
 
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .word-options {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .word-option {
+        padding: 10px 16px;
+        font-size: 1rem;
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .word-options {
+        gap: 8px;
+    }
+
+    .word-option {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        min-width: 70px;
+    }
+}
+
+/* Add active state for touch devices */
+.word-option:active {
+    transform: translateY(1px);
+    background-color: #1976D2;
+}
+
 @media (max-width: 480px) {
   .word-option {
     padding: 10px 20px;

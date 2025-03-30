@@ -104,3 +104,44 @@
   position: relative;
   margin-left: 40px;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .game-board {
+        margin: 1rem auto;
+        gap: 1.5rem;
+    }
+
+    .word-grid {
+        gap: 10px 20px;
+        padding: 10px;
+    }
+
+    .word-cell {
+        width: 90px;
+        height: 60px;
+        font-size: 1rem;
+    }
+
+    /* Adjust lines for mobile */
+    .horizontal-line {
+        height: 1px;
+    }
+
+    .vertical-line {
+        width: 1px;
+    }
+}
+
+@media (max-width: 480px) {
+    .word-cell {
+        width: 80px;
+        height: 50px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Add active state for touch devices */
+.word-cell:active {
+    transform: scale(0.95);
+}

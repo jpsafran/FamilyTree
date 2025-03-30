@@ -67,15 +67,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const cells = document.querySelectorAll('.word-cell:not(.start-word):not(.end-word)');
         cells.forEach((cell, index) => {
             cell.textContent = selectedWords[index] || '?';
+            // Add click handler to cells
+            cell.onclick = () => {
+                if (selectedWords[index]) {
+                    // Find and deselect the corresponding word button
+                    const button = document.querySelector(`.word-option[data-word="${selectedWords[index]}"]`);
+                    if (button) button.classList.remove('selected');
+                    selectedWords[index] = '';
+                    updateGameBoard();
+                }
+            };
         });
     }
 
     // Check guess
     function checkGuess() {
         guessCount++;
+        const solution = dailyPuzzle.solution;
+        const filledWords = selectedWords.filter(word => word !== '');
+        
+        if (filledWords.length < 5) {
+            showAlert("Please fill all positions before checking");
+            guessCount--; // Don't count incomplete attempts
+            return;
+        }
+
         let incorrectPositions = 0;
         selectedWords.forEach((word, index) => {
-            if (word !== dailyPuzzle.solution[index]) {
+            if (word !== solution[index]) {
                 incorrectPositions++;
             }
         });
@@ -90,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             showGameOver(true);
         } else {
-            showAlert(`${incorrectPositions} words are in wrong positions. Tries left: ${5 - guessCount}`);
+            showAlert(`${incorrectPositions} ${incorrectPositions === 1 ? 'word is' : 'words are'} in wrong positions. Tries left: ${5 - guessCount}`);
             if (guessCount >= 5) {
                 gameStatus = 'lost';
                 showGameOver(false);
