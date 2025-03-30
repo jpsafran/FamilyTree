@@ -58,6 +58,21 @@
         font-size: 0.9rem;
         padding: 8px 16px;
     }
+
+    .word-selector {
+        margin: 0.5rem 0;
+    }
+    
+    .word-options {
+        gap: 6px;
+        padding: 10px;
+    }
+    
+    .word-option {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+        min-width: 60px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -73,6 +88,15 @@
 
     .word-selector {
         margin-top: -3rem;
+    }
+
+    .word-selector {
+        margin: 0;
+    }
+    
+    .word-options {
+        gap: 5px;
+        padding: 8px;
     }
 }
 

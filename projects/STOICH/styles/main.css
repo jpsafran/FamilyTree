@@ -173,4 +173,14 @@ button:hover {
     .logo-text {
         font-size: 3rem;
     }
+
+    .check-button {
+        margin-top: 0.5rem;
+        padding: 8px 20px;
+        font-size: 1rem;
+    }
+    
+    .app {
+        padding: 10px;
+    }
 }
