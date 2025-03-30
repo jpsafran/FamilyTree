@@ -6,9 +6,9 @@
   position: relative;
   max-width: 800px;
   gap: 3rem;
-}
-
-.word-grid {
+  }
+  
+  .word-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -18,9 +18,9 @@
   border: none;
   width: fit-content;
   margin: 0 auto;
-}
-
-.word-cell {
+  }
+  
+  .word-cell {
   width: 120px;
   height: 80px;
   border-radius: 15px;
@@ -33,44 +33,44 @@
   background: white;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
-}
-
-.word-cell:hover {
+  }
+  
+  .word-cell:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-/* Add new styles for active cell highlight */
-.word-cell.highlight-next {
+  }
+  
+  /* Add new styles for active cell highlight */
+  .word-cell.highlight-next {
   border: 2px solid #FFD700;
   box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
-}
-
-.word-cell.correct {
+  }
+  
+  .word-cell.correct {
   animation: correctAnimation 0.5s ease-out forwards;
   background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
   color: white;
-}
-
-.word-cell.flip {
+  }
+  
+  .word-cell.flip {
   animation: none;
   transform: perspective(400px) rotateY(180deg);
   transition: transform 0.3s ease-out;
-}
-
-.word-cell.wrong {
+  }
+  
+  .word-cell.wrong {
   background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%) !important;
   color: white;
   transition: background 0.3s ease-out;
-}
-
-@keyframes correctAnimation {
+  }
+  
+  @keyframes correctAnimation {
   0% { transform: scale(1); }
   50% { transform: scale(1.1); }
   100% { transform: scale(1); }
-}
-
-.horizontal-line {
+  }
+  
+  .horizontal-line {
   position: absolute;
   width: 100%;
   height: 2px;
@@ -78,97 +78,90 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 0;
-}
-
-.vertical-line {
+  }
+  
+  .vertical-line {
   position: absolute;
   width: 2px;
   height: 100%;
   background-color: #333;
   top: 0;
   z-index: 0;
-}
-
-.vertical-line-1 { left: 33%; }
-.vertical-line-2 { left: 66%; }
-
-.start-word, .end-word {
+  }
+  
+  .vertical-line-1 { left: 33%; }
+  .vertical-line-2 { left: 66%; }
+  
+  .start-word, .end-word {
   background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
   color: white;
   padding: 20px;
   border-radius: 12px;
   position: relative;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-}
-
-.start-word {
+  }
+  
+  .start-word {
   grid-column: 1;
   grid-row: 1;
-}
-
-.end-word.final-position {
+  }
+  
+  .end-word.final-position {
   position: relative;
   margin-left: 20px;  /* reduced from 40px */
-}
-
-/* Mobile Responsive Styles */
-@media (max-width: 768px) {
-    .game-board {
-        transform: scale(0.9);
-        transform-origin: top center;
-        margin: 2rem auto 0;
-        flex-direction: column; /* Changed to column layout */
-        gap: 0.5rem; /* Reduced gap */
-        width: 100%;
-    }
-
-    .word-grid {
-        gap: 12px 20px;
-        padding: 10px;
-    }
-
-    .word-cell {
-        width: 85px;  /* Larger cells for mobile */
-        height: 60px;
-        font-size: 1.1rem;
-    }
-
-    .check-button {
-        order: 2; /* Places it between grid and selector */
-        margin: 0.5rem 0;
-        padding: 8px 20px;
-        width: auto;
-    }
-
-    #wordSelector {
-        order: 3; /* Places it at the bottom */
-    }
-
-    .end-word.final-position {
-        margin-left: 15px;
-        margin-top: 0;  /* Remove top margin to keep horizontal */
-    }
-}
-
-@media (max-width: 480px) {
-    .game-board {
-        transform: scale(0.9);
-        margin: 1.5rem auto 0;
-    }
-
-    .word-cell {
-        width: 75px;
-        height: 55px;
-        font-size: 1rem;
-    }
-
-    .check-button {
-        font-size: 0.9rem;
-        padding: 6px 16px;
-    }
-}
-
-/* Add active state for touch devices */
-.word-cell:active {
-    transform: scale(0.95);
-}
+  }
+  
+  /* Mobile Responsive Styles */
+  @media (max-width: 768px) {
+  .game-board {
+  transform: scale(0.9);
+  transform-origin: top center;
+          margin: 1rem auto 0.5rem;  /* Reduced margins */
+          margin: 4rem auto -1rem; /* Reduced bottom margin to pull up word selector */
+  flex-direction: row;
+  gap: 1rem; /* Reduced gap */
+  width: 100%;
+  justify-content: center;
+  }
+  
+  .word-grid {
+          gap: 10px 15px; /* Reduced gaps */
+          padding: 8px;
+          gap: 12px 20px;
+          padding: 10px;
+  }
+  
+  .word-cell {
+  width: 85px;  /* Larger cells for mobile */
+  height: 60px;
+  font-size: 1.1rem;
+  }
+  
+  .end-word.final-position {
+  margin-left: 15px;
+  margin-top: 0;  /* Remove top margin to keep horizontal */
+  }
+  }
+  
+  @media (max-width: 480px) {
+  .game-board {
+          transform: scale(0.85); /* Slightly more scaled down */
+          margin: 0.5rem auto 0.5rem; /* Reduced margins */
+          transform: scale(0.9);
+          margin: 3.5rem auto -2rem; /* Further reduced bottom margin for smaller screens */
+  }
+  
+  .word-cell {
+          width: 70px; /* Slightly smaller */
+          height: 50px; /* Slightly smaller */
+          font-size: 0.95rem;
+          width: 75px;
+          height: 55px;
+          font-size: 1rem;
+  }
+  }
+  
+  /* Add active state for touch devices */
+  .word-cell:active {
+  transform: scale(0.95);
+  }
