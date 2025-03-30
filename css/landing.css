@@ -150,9 +150,23 @@ html {
     animation: sway 3s ease-in-out infinite;
 }
 
+.card-content .grid-icon {
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.project-card:hover .grid-icon rect {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
 @keyframes sway {
     0%, 100% { transform: rotate(0deg); }
     50% { transform: rotate(2deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 0.6; }
 }
 
 .card-content h3 {
