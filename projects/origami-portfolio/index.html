@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origami Portfolio - Uncle Jordan's Corner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/portfolio.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../../index.html" class="home-btn">←</a>
+            <h1>Origami Portfolio</h1>
+        </nav>
+    </header>
+
+    <main>
+        <section class="portfolio-intro">
+            <h2>My Origami Creations</h2>
+            <p>Welcome to my collection of handcrafted origami works. Each piece represents hours of precision folding and my passion for transforming simple paper into complex geometric art.</p>
+        </section>
+
+        <section class="portfolio-gallery">
+            <div class="gallery-grid">
+                <!-- Gallery items will be dynamically loaded via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Full-size image modal -->
+    <div class="image-modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-image" src="" alt="">
+        <div class="modal-caption"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Uncle Jordan's Corner. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Automatically load images from the Origamis folder
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get a reference to the gallery grid
+            const galleryGrid = document.querySelector('.gallery-grid');
+            // Modal elements
+            const modal = document.querySelector('.image-modal');
+            const modalImg = document.querySelector('.modal-image');
+            const modalCaption = document.querySelector('.modal-caption');
+            const closeBtn = document.querySelector('.close-modal');
+            
+            // Clear any existing content
+            galleryGrid.innerHTML = '';
+            
+            // Display loading message
+            const loadingItem = document.createElement('div');
+            loadingItem.className = 'loading-message';
+            loadingItem.innerHTML = '<p>Loading origami images...</p>';
+            galleryGrid.appendChild(loadingItem);
+            
+            // Generate an array of possible filenames to check (1.jpeg, 1.png, 2.jpeg, 2.png, etc.)
+            const possibleFiles = [];
+            for (let i = 1; i <= 100; i++) {
+                possibleFiles.push(`${i}.jpeg`);
+                possibleFiles.push(`${i}.png`);
+            }
+            
+            // Check which images actually exist
+            Promise.all(
+                possibleFiles.map(filename => {
+                    return new Promise(resolve => {
+                        const img = new Image();
+                        img.onload = () => {
+                            resolve({
+                                file: filename,
+                                loaded: true
+                            });
+                        };
+                        img.onerror = () => {
+                            // Image failed to load
+                            resolve({ file: filename, loaded: false });
+                        };
+                        img.src = `./Origamis/${filename}`;
+                    });
+                })
+            ).then(results => {
+                // Remove loading message
+                galleryGrid.innerHTML = '';
+                
+                // Filter only successfully loaded images
+                const loadedImages = results.filter(img => img.loaded);
+                
+                if (loadedImages.length === 0) {
+                    galleryGrid.innerHTML = '<p class="no-images">No origami images found in the Origamis folder.</p>';
+                    return;
+                }
+                
+                // Create gallery items for each image
+                loadedImages.forEach(item => {
+                    createGalleryItem(item);
+                });
+                
+                console.log(`Loaded ${loadedImages.length} origami images`);
+            });
+            
+            function createGalleryItem(item) {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="./Origamis/${item.file}" alt="Origami">
+                    <div class="expand-hint">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path d="M15 3h6v6h-2V5h-4V3zM3 9V3h6v2H5v4H3zm12 12v-2h4v-4h2v6h-6zm-6 0H3v-6h2v4h4v2z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                `;
+                galleryGrid.appendChild(galleryItem);
+                
+                // Make the whole gallery item clickable for full-size view
+                galleryItem.addEventListener('click', () => {
+                    openModal(item);
+                });
+            }
+            
+            // Modal functionality
+            function openModal(item) {
+                modal.style.display = 'flex';
+                modalImg.src = `./Origamis/${item.file}`;
+                modalImg.alt = "Origami";
+                modalCaption.innerHTML = ''; // Empty caption
+                document.body.style.overflow = 'hidden'; // Prevent scrolling while modal is open
+            }
+
+            // Close modal when clicking ANYWHERE in the modal
+            modal.addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            });
+
+            // Close modal with escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto'; // Re-enable scrolling
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -61,9 +61,9 @@ nav {
     color: var(--primary-color);
 }
 
-/* Smooth scroll behavior */
+/* Use passive scroll behavior */
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto; /* Change from smooth to auto for performance */
     scroll-padding-top: 80px; /* This ensures the header doesn't overlap content */
 }
 
@@ -77,7 +77,7 @@ html {
     margin-top: -80px;
 }
 
-/* Hero Section */
+/* Optimize hero section */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -90,6 +90,8 @@ html {
     padding: 4rem 1rem;
     position: relative;
     overflow: visible;  /* Changed from hidden */
+    z-index: 1; /* Ensure proper stacking */
+    contain: layout; /* Improve render performance */
 }
 
 .hero h1 {
@@ -103,7 +105,7 @@ html {
     display: none;
 }
 
-/* Projects Grid */
+/* Projects Grid - optimize transitions for better performance */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -112,6 +114,7 @@ html {
     width: 100%;
     max-width: 1200px;
     padding: 0 1rem;
+    will-change: transform; /* Optimize for animations */
 }
 
 .project-card {
@@ -121,15 +124,27 @@ html {
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
     text-decoration: none;
     color: white;
+    will-change: transform; /* Optimize for animations */
 }
 
 .project-card:hover {
     transform: translateY(-10px) scale(1.02);
     background: rgba(255, 255, 255, 0.15);
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* Optimize animations */
+@keyframes sway {
+    0%, 100% { transform: rotate(0deg) translateZ(0); }
+    50% { transform: rotate(2deg) translateZ(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 0.6; }
 }
 
 .card-content {
@@ -157,16 +172,6 @@ html {
 
 .project-card:hover .grid-icon rect {
     animation: pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes sway {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(2deg); }
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 0.9; }
-    50% { opacity: 0.6; }
 }
 
 .card-content h3 {
@@ -201,6 +206,30 @@ html {
 
 .coming-soon:hover {
     transform: none;
+}
+
+/* Icon container for perfect square proportions */
+.icon-container {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.origami-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover .origami-icon {
+  transform: scale(1.05);
 }
 
 /* About Section */

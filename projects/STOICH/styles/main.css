@@ -148,6 +148,24 @@ button:hover {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.app-store-link {
+  display: block;
+  text-align: center;
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 8px 0 12px;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #f5f5f7;
+  transition: background-color 0.2s ease;
+}
+
+.app-store-link:hover {
+  background-color: #e5e5e7;
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
     .info-button {
         width: 25px;

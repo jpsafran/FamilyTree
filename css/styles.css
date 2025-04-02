@@ -42,6 +42,65 @@ header {
   50% { transform: rotate(2deg); }
 }
 
+/* STOICH Logo styling */
+.stoich-logo {
+  font-family: 'Arial Black', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  font-size: 2rem;
+  letter-spacing: 2px;
+  color: white;
+  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.stoich-icon {
+  max-width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover .stoich-icon {
+  transform: scale(1.05);
+}
+
+/* Origami Icon styling */
+.origami-icon {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover .origami-icon {
+  transform: scale(1.05);
+}
+
+.logo-grid {
+  position: relative;
+  display: inline-block;
+}
+
+.logo-grid::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: 
+    linear-gradient(90deg, transparent 95%, rgba(255,255,255,0.2) 100%),
+    linear-gradient(0deg, transparent 95%, rgba(255,255,255,0.2) 100%);
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+
 /* Toolbar */
 .toolbar {
   display: flex;

@@ -10,10 +10,10 @@ const puzzles = [
 
 const defaultPuzzle = {
     date: '2024-01-20',
-    startWord: 'KNEE',
-    endWord: 'RAP',
-    choices: ['TWO', 'BODY', 'DOLLAR', 'JEW', 'RHYME'],
-    solution: ['BODY', 'TWO', 'JEW', 'RHYME', 'DOLLAR']
+    startWord: 'IRON',
+    endWord: 'FRONTMAN',
+    choices: ['METAL', 'HEAVY', 'LEAD', 'GOLD', 'MUSIC'],
+    solution: ['GOLD', 'METAL', 'HEAVY', 'MUSIC', 'LEAD']
 };
 
 function getPuzzleForDate(date) {
